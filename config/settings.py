@@ -55,8 +55,12 @@ ASGI_APPLICATION = 'config.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'atarax_db',
+        'USER': 'atarax_user',
+        'PASSWORD': 'superheslo123',
+        'HOST': 'db', # Odpovídá názvu služby v docker-compose
+        'PORT': '5432',
     }
 }
 

@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:15-alpine
+    container_name: atarax_db
+    environment:
+      POSTGRES_DB: atarax_db
+      POSTGRES_USER: atarax_user
+      POSTGRES_PASSWORD: superheslo123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
   backend:
     build: .
     container_name: atarax_backend
@@ -8,4 +19,9 @@ services:
       - "8008:8000"
     volumes:
       - ./media:/app/media
+    depends_on:
+      - db
     restart: unless-stopped
+
+volumes:
+  postgres_data:
