@@ -13,12 +13,12 @@ if exist "%~dp0manage.py" (
 )
 
 echo ========================================================
-echo Spoustim Django backend a oteviram http://127.0.0.1:8000/admin/
+echo Spoustim Django backend a oteviram http://192.168.0.95:8000/admin/
 echo Ukonceni serveru: CTRL + C
 echo ========================================================
 
 :: Otevreni prohlizece na pozadi po 2 sekundach
-start "" cmd /c "timeout /t 2 /nobreak >nul & start http://127.0.0.1:8000/admin/"
+start "" cmd /c "timeout /t 2 /nobreak >nul & start http://192.168.0.95:8000/admin/"
 
 :: Spusteni vyvojoveho serveru
 python manage.py runserver
