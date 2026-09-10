@@ -9,14 +9,14 @@ if (Test-Path "$scriptPath\manage.py") {
 }
 
 Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "Spoustim Django backend a oteviram http://192.168.0.95:8000/admin/" -ForegroundColor Green
+Write-Host "Spoustim Django backend a oteviram http://192.168.0.95:8008/admin/" -ForegroundColor Green
 Write-Host "Ukonceni serveru: CTRL + C" -ForegroundColor Yellow
 Write-Host "========================================================" -ForegroundColor Cyan
 
 # Otevreni v prohlizeci s kratkym zpozdenim na pozadi
 Start-Job -ScriptBlock {
     Start-Sleep -Seconds 2
-    Start-Process "http://192.168.0.95:8000/admin/"
+    Start-Process "http://192.168.0.95:8008/admin/"
 } | Out-Null
 
 python manage.py runserver
