@@ -7,6 +7,5 @@ services:
     ports:
       - "8008:8000"
     volumes:
-      - ./db.sqlite3:/app/db.sqlite3
       - ./media:/app/media
-    restart: unless-stopped
+    restart: unless-stopped
