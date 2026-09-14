@@ -8,8 +8,6 @@ from rest_framework.permissions import AllowAny
 # NAČÍTÁNÍ FUNKCÍ
 from atarax_backend_app.views import get_maps_data
 
-# pyrefly: ignore [missing-import]
-from atarax_backend_app.models import Continents
 
 # INDEX
 @api_view(['GET'])
