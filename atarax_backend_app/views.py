@@ -19,6 +19,3 @@ def get_maps_data():
         "unique_locations": unique_locations,
     }
 
-
-# Alias pro případnou zpětnou kompatibilitu
-maps = get_maps_data

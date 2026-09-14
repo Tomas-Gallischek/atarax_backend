@@ -29,6 +29,7 @@ def maps(request: HttpRequest):
     
     try:
         maps_data = get_maps_data()
+        print(maps_data)
         return Response(maps_data, status=status.HTTP_200_OK)
     except Exception as e:
         print(f"Chyba při načítání map z databáze: {e}")
