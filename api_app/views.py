@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 
 # NAČÍTÁNÍ FUNKCÍ
-from atarax_backend_app.views import get_maps_data
+from atarax_backend_app.views import get_maps_data, get_maps_detail
 
 
 # INDEX
@@ -39,6 +39,20 @@ def maps(request: HttpRequest):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
-
-
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def maps_detail(request: HttpRequest, name):
+    print(f'Funkce maps_detail s parametrem {name} byla zavolána!')
+    
+    try:
+        map_data = get_maps_detail(name)
+        print(map_data)
+        return Response(map_data, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        print(f"Chyba při načítání map z databáze: {e}")
+        return Response(
+            {"error": "Data se nepodařilo načíst", "details": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
     
