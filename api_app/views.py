@@ -30,6 +30,7 @@ def maps(request: HttpRequest):
     try:
         maps_data = get_maps_data()
         print(maps_data)
+        num_gen()
         return Response(maps_data, status=status.HTTP_200_OK)
         
     except Exception as e:
@@ -38,4 +39,16 @@ def maps(request: HttpRequest):
             {"error": "Data se nepodařilo načíst", "details": str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+def num_gen():
+    print("Funkce num_gen byla zavolána!")
+
+    y = 0
+
+    for x in range(1, 500):
+        print(f"Číslo {x} je OK")
+        y += x
+        print(f"Proměnná y je {y}")
+
+
     
