@@ -13,10 +13,10 @@ class Location(models.Model):
     )
     type = models.CharField(max_length=100, verbose_name="Typ", choices=LOCATION_TYPE_CHOICES)
 
-    continent = models.OneToOneField("name", on_delete=models.CASCADE, verbose_name="Kontinent", blank=True, null=True, related_name="continent")
-    kingdom = models.OneToOneField("name", on_delete=models.CASCADE, verbose_name="Království", blank=True, null=True, related_name="kralovstvi")
-    region = models.OneToOneField("name", on_delete=models.CASCADE, verbose_name="Region", blank=True, null=True, related_name="region")
-    city = models.OneToOneField("name", on_delete=models.CASCADE, verbose_name="Město", blank=True, null=True, related_name="mesto")
+    continent = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="Kontinent", blank=True, null=True, related_name="continent_locations")
+    kingdom = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="Království", blank=True, null=True, related_name="kingdom_locations")
+    region = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="Region", blank=True, null=True, related_name="region_locations")
+    city = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name="Město", blank=True, null=True, related_name="city_locations")
     specific_location = models.CharField(max_length=150, verbose_name="Specifická lokace", blank=True, null=True)
     
     class Meta:
