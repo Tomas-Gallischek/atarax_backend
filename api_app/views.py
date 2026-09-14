@@ -1,5 +1,4 @@
 # NAČÍTÁNÍ KNIHOVEN
-from atarax_backend import api_app
 from django.http import HttpRequest
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
