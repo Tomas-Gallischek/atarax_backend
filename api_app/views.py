@@ -46,6 +46,12 @@ def maps_detail(request: HttpRequest, name):
     
     try:
         map_data = get_maps_detail(name)
+        if map_data is None:
+            return Response(
+                {"error": f"Lokace '{name}' nebyla nalezena"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
         print(map_data)
         return Response(map_data, status=status.HTTP_200_OK)
         
