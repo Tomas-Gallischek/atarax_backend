@@ -25,3 +25,16 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+
+class NPC(models.Model):
+
+    name = models.CharField(max_length=150, verbose_name="Jméno")
+    description = models.TextField(blank=True, null=True, verbose_name="Popis")
+    npc_location = models.ForeignKey(Location, on_delete=models.CASCADE, verbose_name="Lokace", blank=True, null=True, related_name="npc_locations")
+    
+    class Meta:
+        verbose_name = "NPC"
+        verbose_name_plural = "NPC"
+
+    def __str__(self):
+        return self.name
