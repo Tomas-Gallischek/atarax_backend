@@ -9,7 +9,7 @@ def get_maps_data():
 
 def get_maps_detail(name):
     print(f"funkce pro vypsání detailu mapy {name} - OK")
-    
-    map_data = Location.objects.filter(name=name)
+    map_name = name
+    map_data = Location.objects.get(name=map_name)
     print(map_data)
     return {"map_data": map_data}
