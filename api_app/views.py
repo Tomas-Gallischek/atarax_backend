@@ -8,6 +8,8 @@ from rest_framework.permissions import AllowAny
 # NAČÍTÁNÍ FUNKCÍ
 from atarax_backend_app.views import get_maps_data
 
+# pyrefly: ignore [missing-import]
+from atarax_backend_app.models import Continents
 
 # INDEX
 @api_view(['GET'])
@@ -43,12 +45,17 @@ def maps(request: HttpRequest):
 def num_gen():
     print("Funkce num_gen byla zavolána!")
 
+
     y = 0
 
-    for x in range(1, 500):
+    for x in range(1, 50):
         print(f"Číslo {x} je OK")
         y += x
         print(f"Proměnná y je {y}")
+
+        continent_info = Continents.objects.all()
+        for continent in continent_info:
+            print(continent.name)
 
 
     
