@@ -4,7 +4,7 @@ from rest_framework import status
 from .models import NPC, Continents, Kingdom, Region, City, Dungeons, unique_location
 
 
-def maps(request):
+def maps():
     print("funkce pro vypsání map - OK")
     continents = Continents.objects.all()
     kingdoms = Kingdom.objects.all()
@@ -13,7 +13,7 @@ def maps(request):
     dungeons = Dungeons.objects.all()
     unique_locations = unique_location.objects.all()
 
-    return Response({
+    return ({
         "continents": continents,
         "kingdoms": kingdoms,
         "regions": regions,

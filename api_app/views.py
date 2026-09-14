@@ -25,7 +25,7 @@ def index(request):
 def maps(request):
     print("Funkce maps byla zavolána!")
     
-    maps_data = maps(request)
+    maps_data = maps()
 
     if maps_data:
         return Response(maps_data, status=status.HTTP_200_OK)
