@@ -1,4 +1,5 @@
 # NAČÍTÁNÍ KNIHOVEN
+from atarax_backend import api_app
 from django.http import HttpRequest
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -6,7 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 
 # NAČÍTÁNÍ FUNKCÍ
-from atarax_backend_app.views import get_maps_data, get_maps_detail
+from atarax_backend_app.views import get_maps_data, get_maps_detail, get_npc_data
 
 
 # INDEX
@@ -62,3 +63,19 @@ def maps_detail(request: HttpRequest, name):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
     
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def npc(request: HttpRequest):
+    print("Funkce npc byla zavolána!")
+    
+    try:
+        npc_data = get_npc_data()
+        print(npc_data)
+        return Response(npc_data, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        print(f"Chyba při načítání npc z databáze: {e}")
+        return Response(
+            {"error": "Data se nepodařilo načíst", "details": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

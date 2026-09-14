@@ -1,4 +1,4 @@
-from .models import Location
+from .models import Location, NPC
 
 
 def get_maps_data():
@@ -24,3 +24,9 @@ def get_maps_detail(name):
         }
     except Location.DoesNotExist:
         return None
+
+def get_npc_data():
+    print("funkce pro vypsání NPC - OK")
+    npc_list = list(NPC.objects.values())
+    print(npc_list)
+    return {"npc": npc_list}
