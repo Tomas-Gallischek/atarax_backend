@@ -30,3 +30,16 @@ def get_npc_data():
     npc_list = list(NPC.objects.values())
     print(npc_list)
     return {"npc": npc_list}
+
+
+def get_npc_detail(name):
+    print(f"funkce pro vypsání detailu NPC {name} - OK")
+    try:
+        npc = NPC.objects.filter(name=name)
+        return {
+            "name": npc.name,
+            "description": npc.description,
+            "npc_location_name": npc.npc_location_name
+        }
+    except NPC.DoesNotExist:
+        return None

@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 
 # NAČÍTÁNÍ FUNKCÍ
-from atarax_backend_app.views import get_maps_data, get_maps_detail, get_npc_data
+from atarax_backend_app.views import get_maps_data, get_maps_detail, get_npc_data, get_npc_detail
 
 
 # INDEX
@@ -70,6 +70,29 @@ def npc(request: HttpRequest):
     try:
         npc_data = get_npc_data()
         print(npc_data)
+        return Response(npc_data, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        print(f"Chyba při načítání npc z databáze: {e}")
+        return Response(
+            {"error": "Data se nepodařilo načíst", "details": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def npc_detail(request: HttpRequest, name):
+    print(f'Funkce npc_detail s parametrem {name} byla zavolána!')
+    
+    try:
+        npc_data = get_npc_detail(name)
+        if npc_data is None:
+            return Response(
+                {"error": f"    NPC '{name}' nebyla nalezena"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        print(f"Detail NPC {npc_data}")
         return Response(npc_data, status=status.HTTP_200_OK)
         
     except Exception as e:
