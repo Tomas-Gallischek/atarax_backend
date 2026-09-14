@@ -48,7 +48,7 @@ def num_gen():
 
     y = 0
 
-    for x in range(1, 50):
+    for x in range(1, 5000):
         print(f"Číslo {x} je OK")
         y += x
         print(f"Proměnná y je {y}")
