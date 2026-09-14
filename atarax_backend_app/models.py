@@ -30,11 +30,18 @@ class NPC(models.Model):
 
     name = models.CharField(max_length=150, verbose_name="Jméno")
     description = models.TextField(blank=True, null=True, verbose_name="Popis")
-    npc_location = models.ForeignKey(Location, on_delete=models.CASCADE, verbose_name="Lokace", blank=True, null=True, related_name="npc_locations")
+    npc_location_id = models.ForeignKey(Location, on_delete=models.CASCADE, verbose_name="Lokace", blank=True, null=True, related_name="npc_locations")
+    npc_location_name = models.CharField(max_length=150, verbose_name="Jméno lokace", blank=True, null=True)
     
     class Meta:
         verbose_name = "NPC"
         verbose_name_plural = "NPC"
 
+    def save(self, *args, **kwargs):
+        if self.npc_location_id:
+            self.npc_location_name = self.npc_location_id.name
+        super().save(*args, **kwargs)
+
     def __str__(self):
+
         return self.name
