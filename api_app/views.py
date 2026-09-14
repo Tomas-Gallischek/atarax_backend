@@ -1,4 +1,5 @@
 # NAČÍTÁNÍ KNIHOVEN
+from django.http import HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -25,10 +26,10 @@ def index(request):
 def maps(request):
     print("Funkce maps byla zavolána!")
     
-    maps_data = maps()
+    maps_data = maps(request)
 
     if maps_data:
-        return Response(maps_data, status=status.HTTP_200_OK)
+        return HttpResponse(maps_data, status=status.HTTP_200_OK)
     else:
-        return Response({"error": "Data se nepodařilo načíst"}, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse("Data se nepodařilo načíst", status=status.HTTP_400_BAD_REQUEST)
     
