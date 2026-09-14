@@ -2,9 +2,10 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 
-
+# NAČÍTÁNÍ FUNKCÍ
+from atarax_backend_app.views import maps
 
 
 # INDEX
@@ -18,3 +19,16 @@ def index(request):
 
     except (TypeError, ValueError):
         return Response({"error": "Někde se stala chyba"}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def maps(request):
+    print("Funkce maps byla zavolána!")
+    
+    maps_data = maps(request)
+
+    if maps_data:
+        return Response(maps_data, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Data se nepodařilo načíst"}, status=status.HTTP_400_BAD_REQUEST)
+    
