@@ -35,7 +35,7 @@ def get_npc_data():
 def get_npc_detail(name):
     print(f"funkce pro vypsání detailu NPC {name} - OK")
     try:
-        npc = NPC.objects.filter(name=name)
+        npc = NPC.objects.get(name=name)
         return {
             "name": npc.name,
             "description": npc.description,
