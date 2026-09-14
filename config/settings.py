@@ -19,7 +19,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'atarax_backend_app',
+    'api_app',
 ]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
